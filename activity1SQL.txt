@@ -1,0 +1,43 @@
+
+/*query1*/
+SELECT MIN(salary) AS min_salary FROM employees
+/*query2*/
+SELECT MAX(SALARY) AS max_salary 
+FROM employees
+WHERE job_id = 'IT_PROG'
+///
+SELECT max_salary
+FROM jobs
+WHERE job_title='Programmer'
+/*query 3*/
+SELECT AVG(salary) , COUNT(employee_id) AS department_num
+FROM employees
+/*query 4*/
+SELECT AVG(salary) , MAX(salary) , MIN(salary) , SUM(salary)
+FROM employees
+/*query 5*/
+SELECT e.employee_id AS employee, j.job_id AS job_title
+FROM employees e 
+JOIN jobs j 
+ON e.job_id = j.job_id 
+GROUP BY 2
+/*query 6*/
+SELECT MIN(salary), manager_id
+FROM employees
+GROUP BY 2
+ORDER BY salary
+LIMIT 1;
+/*query 7*/
+SELECT first_name, last_name, salary
+FROM employees
+WHERE salary > (SELECT salary
+FROM employees 
+WHERE last_name = 'Bull')
+ORDER BY salary DESC;
+/*query8*/
+
+/*query9*/
+SELECT first_name , last_name , salary
+FROM employees
+WHERE salary > (SELECT AVG(salary)
+FROM employess)
